@@ -11,8 +11,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/index.html'));
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 module.exports = app;
