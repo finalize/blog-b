@@ -7,3 +7,7 @@ body, html {
 a {
   color: #00B7FF;
 }
+
+* {
+  box-sizing: border-box;
+}
