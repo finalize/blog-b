@@ -4,33 +4,58 @@ import styledComponents from 'styled-components';
 import * as ReactMarkdown from 'react-markdown';
 
 import SideBar from './SideBar';
+import Header from './Header';
 
 const CreateComponent = styledComponents.div`
   display: flex;
+  position: relative;
   width: 100%;
   height: 100%;
 `;
 
-const MarkdownComponent = styledComponents.div`
-  width: 50%;
+const MainComponent = styledComponents.div`
+  width: 100%;
   height: 100%;
+  position: relative;
+`;
+
+const MarkdownComponent = styledComponents.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+const WritingComponent = styledComponents.div`
+  width: 50%;
+  height: auto;
   border-right: 1px solid #ccc;
+  position: absolute;
+  top: 60;
+  right:0;
+  bottom:0;
+  left:0;
 `;
 
 const PreviewComponent = styledComponents.div`
   width: 50%;
-  height: 100%;
+  height: auto;
+  position: absolute;
+  top: 60;
+  right:0;
+  bottom:0;
 `;
+
 const TextareaComponent = styledComponents.textarea`
   width: 100%;
   height: 100%;
   border: none;
   resize: none;
-  padding: 8;
-  font-size: 18;
+  padding: 16;
+  font-size: 17;
 `;
 
-class Header extends React.Component {
+class Create extends React.Component {
   state = {
     value: 'a',
   };
@@ -45,10 +70,13 @@ class Header extends React.Component {
     return (
       <CreateComponent>
         <SideBar />
-        <MarkdownComponent>
-          <TextareaComponent onChange={ this.onChange } />
-        </MarkdownComponent>
-        <PreviewComponent><ReactMarkdown source={this.state.value} /></PreviewComponent>>
+        <MainComponent>
+          <Header />
+          <MarkdownComponent>
+            <WritingComponent><TextareaComponent onChange={this.onChange}/></WritingComponent>
+            <PreviewComponent><ReactMarkdown source={this.state.value}></ReactMarkdown></PreviewComponent>
+          </MarkdownComponent>
+        </MainComponent>
       </CreateComponent>
     );
   }
@@ -62,4 +90,4 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => ({
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Create);
