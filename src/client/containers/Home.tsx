@@ -2,18 +2,15 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styledComponents from 'styled-components';
 
-import SideBar from './SideBar';
+import Header from './Header';
 
 const HomeComponent = styledComponents.div`
-  width: 320px;
-  height: 100%;
-  border-right: 1px solid #ccc;
 `;
 
 class Home extends React.Component {
   render() {
     return (
-      <HomeComponent>SideBar</HomeComponent>
+      <HomeComponent><Header /></HomeComponent>
     );
   }
 }
@@ -26,4 +23,4 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => ({
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideBar);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
