@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import styledComponents from 'styled-components';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
-import { FiHome, FiHash, FiBell, FiMail } from 'react-icons/fi';
+import { FiHome, FiHash, FiBell, FiMail, FiSearch } from 'react-icons/fi';
 
 const HeaderComponent = styledComponents.div`
   width: 100%;
   height: 54;
   background-color: rgb(28, 41, 56);
+  position: fixed;
 `;
 
 const InnerHeaderComponent = styledComponents.div`
@@ -31,21 +32,24 @@ const Icon = styledComponents.div`
 
 const SearchComponent = styledComponents.div`
   width: 476;
+  padding: 0 20;
+  position: relative;
 `;
 
 const InputComponent = styledComponents.input`
   color: #fafafa;
-  width: 476;
-  height: 31;
-  padding: 10;
-  margin 12 0;
+  width: 436;
+  height: 34;
+  padding: 10 10 10 42;
+  margin 10 0;
   background-color: rgb(16, 23, 30);
   border: none;
   border-radius: 100px;
   outline:none;
+  font-size: 16px;
   &:focus {
     border: 1px solid #1DA1F1;
-    padding-left: 9;
+    padding-left: 41;
   }
 `;
 
@@ -55,14 +59,19 @@ class Header extends React.Component {
       <HeaderComponent>
         <InnerHeaderComponent>
           <NavComponent>
-            <IconContext.Provider value={{ color: '#fafafa', size: '28px' }}>
+            <IconContext.Provider value={{ color: '#fafafa', size: '26px' }}>
               <Link to="/"><Icon><FiHome /></Icon></Link>
               <Link to="home"><Icon><FiHash /></Icon></Link>
               <Link to="home"><Icon><FiBell /></Icon></Link>
               <Link to="home"><Icon><FiMail /></Icon></Link>
             </IconContext.Provider>
           </NavComponent>
-          <SearchComponent><InputComponent placeholder="Search Twitter" /></SearchComponent>
+          <SearchComponent>
+            <IconContext.Provider value={{ color: '#ccc', size: '20px' }}>
+              <FiSearch style={{ position: 'absolute', top: '18', left: '32' }}/>
+            </IconContext.Provider>
+            <InputComponent placeholder="Search Twitter" />
+          </SearchComponent>
         </InnerHeaderComponent>
       </HeaderComponent>
     );
