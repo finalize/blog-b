@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/history": "^4.7.2",
+    "axios": "^0.18.0",
     "connected-react-router": "^6.3.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
