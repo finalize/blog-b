@@ -1,5 +1,5 @@
 import {
-  HELLO_WORLD,
+  TWEET,
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -7,7 +7,8 @@ const initialState = {
 
 const reducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case HELLO_WORLD:
+    case TWEET:
+      console.log(action);
       return {
         ...state,
       };

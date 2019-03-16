@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styledComponents from 'styled-components';
 
-import Tweet from './Tweet';
+import Timeline from './Timeline';
 
 const MainComponent = styledComponents.div`
   width: 100%;
@@ -22,7 +22,7 @@ class Main extends React.Component {
     return (
       <MainComponent>
         <InnerMainComponent>
-          <Tweet></Tweet>
+          <Timeline></Timeline>
         </InnerMainComponent>
       </MainComponent>
     );

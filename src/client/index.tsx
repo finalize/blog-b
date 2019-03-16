@@ -10,7 +10,7 @@ import Home from './containers/Home';
 import Create from './containers/Create';
 
 ReactDOM.render(
-  <Provider store={configureStore}>
+  <Provider store={configureStore()}>
     <ConnectedRouter history={history}>
       <div>
         <Route exact path="/" component={() => (<Home />)} />

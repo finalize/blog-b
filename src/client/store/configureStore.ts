@@ -4,6 +4,8 @@ import { createBrowserHistory } from 'history';
 import reduxSaga from 'redux-saga';
 import { createLogger } from 'redux-logger';
 
+import sagas from '../sagas';
+
 import header from '../reducers/header';
 
 const rootReducer = (history: any) => combineReducers({
@@ -11,23 +13,26 @@ const rootReducer = (history: any) => combineReducers({
   router: connectRouter(history),
 });
 
-const sagaMiddleware = reduxSaga();
-
-const logger = createLogger({
-  diff:true,
-  collapsed:true,
-});
-
 export const history = createBrowserHistory();
 
-const store = createStore(
-  rootReducer(history),
-  compose(
-    applyMiddleware(
-      sagaMiddleware,
-      logger,
-    ),
-  ),
-);
+export default function configureStore() {
+  const sagaMiddleware = reduxSaga();
 
-export default store;
+  const logger = createLogger({
+    diff:true,
+    collapsed:true,
+  });
+
+  const store = createStore(
+    rootReducer(history),
+    compose(
+      applyMiddleware(
+        sagaMiddleware,
+        logger,
+      ),
+    ),
+  );
+
+  sagaMiddleware.run(sagas);
+  return store;
+}

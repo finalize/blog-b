@@ -5,7 +5,11 @@ import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { FiImage, FiInstagram, FiTwitter } from 'react-icons/fi';
 
-const TweetComponent = styledComponents.div`
+import {
+  tweet,
+} from '../actions/timeline';
+
+const TimelineComponent = styledComponents.div`
   width: 600;
   background-color: #151F2A;
 `;
@@ -49,24 +53,20 @@ const InputComponent = styledComponents.input`
   }
 `;
 
-const TweetBtn = styledComponents.span`
-  font-size: 18px;
-  color: #fafafa;
-  border-radius: 100px;
-  background-color: rgba(29,161,242,1.00);
-  padding: 8 20;
-`;
-
 const IconComponent = styledComponents.div`
   display: flex;
   height: 40;
   padding: 8;
 `;
 
-class Tweet extends React.Component {
+interface PropTypes {
+  tweet: () => void;
+}
+
+class Timeline extends React.Component<PropTypes, {}> {
   render() {
     return (
-      <TweetComponent>
+      <TimelineComponent>
         <TweetHeaderComponent>
           <HomeText>Home</HomeText>
         </TweetHeaderComponent>
@@ -75,10 +75,10 @@ class Tweet extends React.Component {
           <IconContext.Provider value={{ color: 'rgba(29,161,242,1.00)', size: '26px' }}>
             <IconComponent><FiImage /></IconComponent>
             <IconComponent><FiInstagram /></IconComponent>
-            <IconComponent><FiTwitter /></IconComponent>
+            <IconComponent><FiTwitter onClick={() => this.props.tweet()}/></IconComponent>
           </IconContext.Provider>
         </OuterInputComponent>
-      </TweetComponent>
+      </TimelineComponent>
     );
   }
 }
@@ -89,6 +89,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
+  tweet: () => dispatch(tweet()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tweet);
+export default connect(mapStateToProps, mapDispatchToProps)(Timeline);
