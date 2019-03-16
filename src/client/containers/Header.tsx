@@ -10,6 +10,10 @@ const HeaderComponent = styledComponents.div`
   height: 54;
   background-color: rgb(28, 41, 56);
   position: fixed;
+
+  @media only screen and (max-width: 1000px) {
+    background-color: #ffffff;
+  }
 `;
 
 const InnerHeaderComponent = styledComponents.div`
